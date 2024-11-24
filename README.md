@@ -14,6 +14,10 @@ Our findings highlight areas of concern and opportunities for tailored retention
 2. Actionable recommendations based on the insights.
 3. Strategic pathways for optimizing customer retention efforts.
 
+#### Dataset Overview:
+10,000 customer records from a bank.
+Features include demographic information (age, geography, gender), financial details (balance, credit score, estimated salary), engagement metrics (tenure, number of products), and the churn label (Exited).
+
 #### 1. Data Cleaning Summary
 
 Missing Values: No missing values were found in the dataset.
@@ -26,6 +30,11 @@ The dataset is clean and ready for analysis.
 #### 2. Key Insights
 Churn Rate Overview
 Overall Churn Rate: 20.37%
+High-Risk Factors:
+Age: Older customers are more likely to churn.
+Balance: Both very low and very high balances are associated with churn.
+Engagement: Customers with fewer products or inactive membership show higher churn rates.
+Credit Score: Poor credit scores correlate with churn, though the effect is moderate.
 
 #### Segmentation Analysis
 ##### 1. Geography
@@ -58,8 +67,36 @@ Active Members: 14.27%
   Medium ($50,000-$100,000): 19.87%
   High (> $100,000): 20.84%
 
-#### 3. Recommendations
+### Feature Importance (From Model)
+Age: The most critical factor influencing churn, highlighting the need for age-specific retention strategies.
+Balance: Significant influence—customers with extreme balances (low or high) are at higher risk.
+Estimated Salary: Impacts churn, possibly due to financial stability.
+Number of Products: Strong engagement (more products) reduces churn risk.
+Tenure and Active Membership: Loyalty and activity levels moderately affect churn.
+Demographics (Geography and Gender): Less impactful but still notable.
 
+#### Model and Performance Metrics
+Machine Learning Model: A Random Forest Classifier was used to predict churn.
+Data Split: The dataset was split into 80% training and 20% testing data.
+Key Evaluation Metrics:
+Accuracy: 86% overall model accuracy.
+Precision: 79% for churn predictions, meaning most predicted churners were actual churners.
+Recall: 46%, indicating the model missed some churners (false negatives).
+AUC (Area Under ROC Curve): 0.85, reflecting strong predictive power in distinguishing churners from non-churners.
+
+#### Confusion Matrix Observations
+True Positives (187): Customers correctly identified as churners.
+True Negatives (1542): Customers correctly identified as non-churners.
+False Positives (51): Non-churners incorrectly flagged as churners.
+False Negatives (220): Churners incorrectly labelled as non-churners (missed by the model).
+Challenge: Improving recall (identifying more churners) to reduce false negatives.
+
+#### ROC Curve Analysis
+The ROC curve shows the trade-off between True Positive Rate (TPR) and False Positive Rate (FPR) at various classification thresholds.
+AUC = 0.85: Indicates that the model has an 85% chance of correctly distinguishing churners from non-churners.
+Implication: The model performs well, but threshold adjustments could prioritize recall if churn detection is more critical than reducing false positives.
+
+#### 3. Recommendations
 ##### Focus on High-Churn Regions (Germany):
  Implement region-specific initiatives such as customer feedback programs, loyalty rewards, or personalized offers.
 Investigate reasons for high churn in Germany through customer surveys.
@@ -88,8 +125,10 @@ Use this feedback to tailor interventions and measure improvements.
 Develop a real-time churn analytics dashboard for proactive risk identification.
 Use predictive models to target at-risk customers before they decide to leave.
 
-
 #### 5. Conclusion
+##### Insights: Age, financial factors, and engagement are the primary drivers of churn.
+##### Model Performance: The model performs well overall, with an AUC of 0.85, but improving recall is critical for detecting more churners.
+##### Actionable Steps: Focused retention strategies and improved customer engagement will significantly reduce churn rates.
 By addressing the identified areas of high churn and implementing the recommendations outlined above, the bank can significantly improve customer retention. Key focus areas include:
 Enhancing engagement with older customers and inactive members.
 Reducing churn among customers with multiple products through simplification and targeted outreach.
